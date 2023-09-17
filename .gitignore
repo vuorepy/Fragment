@@ -34,4 +34,5 @@
 # Own
 *.vs
 bin
+bin-int
 *.user
