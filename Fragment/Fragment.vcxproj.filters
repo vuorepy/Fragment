@@ -7,6 +7,9 @@
     <Filter Include="Fragment\Events">
       <UniqueIdentifier>{BD299BAD-29B5-0872-32C6-8B669ED06472}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Fragment.h" />
@@ -19,15 +22,28 @@
     <ClInclude Include="src\Fragment\EntryPoint.h">
       <Filter>Fragment</Filter>
     </ClInclude>
+    <ClInclude Include="src\Fragment\Events\ApplicationEvent.h">
+      <Filter>Fragment\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\Fragment\Events\Event.h">
+      <Filter>Fragment\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Events\KeyEvent.h">
+      <Filter>Fragment\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Events\MouseEvent.h">
       <Filter>Fragment\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Fragment\Log.h">
       <Filter>Fragment</Filter>
     </ClInclude>
-    <ClInclude Include="src\Fragment\Events\ApplicationEvent.h" />
-    <ClInclude Include="src\Fragment\Events\MouseEvent.h" />
-    <ClInclude Include="src\Fragment\Events\KeyEvent.h" />
+    <ClInclude Include="src\Fragment\Window.h">
+      <Filter>Fragment</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\WindowsWindow.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\frgpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Fragment\Application.cpp">
@@ -36,5 +52,9 @@
     <ClCompile Include="src\Fragment\Log.cpp">
       <Filter>Fragment</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\WindowsWindow.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="src\frgpch.cpp" />
   </ItemGroup>
 </Project>

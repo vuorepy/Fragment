@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Fragment
 {
 	class FRAGMENT_API MouseMovedEvent : public Event

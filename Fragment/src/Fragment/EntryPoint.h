@@ -7,8 +7,7 @@ extern Fragment::Application* Fragment::CreateApplication();
 void main(int argc, char** argv)
 {
 	Fragment::Log::Init();
-	FRG_CORE_INFO("Initialized Log!");
-	FRG_INFO("Hello!");
+	FRG_CORE_INFO("Fragment Engine");
 
 	auto app = Fragment::CreateApplication();
 	app->Run();

@@ -10,6 +10,12 @@ workspace "Fragment"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to the root folder
+IncludeDirs = {}
+IncludeDirs["GLFW"] = "Fragment/vendor/GLFW/include"
+
+include "Fragment/vendor/GLFW"
+
 project "Fragment"
 	location "Fragment"
 	kind "SharedLib"
@@ -17,6 +23,9 @@ project "Fragment"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	pchheader "frgpch.h"
+	pchsource "Fragment/src/frgpch.cpp"
 
 	files 
 	{
@@ -26,9 +35,17 @@ project "Fragment"
 
 	includedirs
 	{
-		"%{prj.name}/src"
+		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDirs.GLFW}"
 	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
+	}
+
 
 	filter "system:windows"
 		cppdialect "Default"

@@ -2,8 +2,6 @@
 
 #include "Fragment/Core.h"
 
-#include <string>
-#include <functional>
 
 namespace Fragment
 {

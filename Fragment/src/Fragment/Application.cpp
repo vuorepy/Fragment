@@ -1,3 +1,4 @@
+#include "frgpch.h"
 #include "Application.h"
 
 #include "Events/Event.h"
@@ -7,20 +8,18 @@
 namespace Fragment {
 	Fragment::Application::Application()
 	{
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	Fragment::Application::~Application()
 	{
 	}
 
-	void Application::Run() {
-
-		WindowResizeEvent e(1280, 720);
-		FRG_TRACE(e);
-
-		while (true)
+	void Application::Run() 
+	{
+		while (m_Running)
 		{
-
+			m_Window->OnUpdate();
 		}
 	}
 }

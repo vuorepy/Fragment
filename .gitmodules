@@ -1,3 +1,6 @@
 [submodule "Fragment/vendor/spdlog"]
 	path = Fragment/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Fragment/vendor/GLFW"]
+	path = Fragment/vendor/GLFW
+	url = https://github.com/Rypryp/glfw

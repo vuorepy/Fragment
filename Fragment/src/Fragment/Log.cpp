@@ -1,3 +1,4 @@
+#include "frgpch.h"
 #include "Log.h"
 
 namespace Fragment
