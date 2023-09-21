@@ -26,13 +26,14 @@ project "Fragment"
 
 	includedirs
 	{
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/src"
+		"%{prj.name}/vendor/spdlog/include",
 	}
 
 	filter "system:windows"
 		cppdialect "Default"
 		staticruntime "On"
-		systemversion "10.0.22621.0"
+		systemversion "latest"
 
 		defines {"FRG_PLATFORM_WINDOWS","FRG_BUILD_DLL"}
 
@@ -70,7 +71,7 @@ project "Sandbox"
 	filter "system:windows"
 		cppdialect "Default"
 		staticruntime "On"
-		systemversion "10.0.22621.0"
+		systemversion "latest"
 
 		defines 
 		{

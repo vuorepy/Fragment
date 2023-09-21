@@ -1,5 +1,9 @@
 #include "Application.h"
 
+#include "Events/Event.h"
+#include "Events/ApplicationEvent.h"
+#include "Fragment/Log.h"
+
 namespace Fragment {
 	Fragment::Application::Application()
 	{
@@ -10,6 +14,10 @@ namespace Fragment {
 	}
 
 	void Application::Run() {
+
+		WindowResizeEvent e(1280, 720);
+		FRG_TRACE(e);
+
 		while (true)
 		{
 
