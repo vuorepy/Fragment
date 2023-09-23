@@ -5,7 +5,7 @@ class Sandbox : public Fragment::Application
 public:
 	Sandbox()
 	{
-
+		PushOverlay(new Fragment::ImGuiLayer());
 	}
 
 	~Sandbox()

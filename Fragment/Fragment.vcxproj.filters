@@ -7,8 +7,14 @@
     <Filter Include="Fragment\Events">
       <UniqueIdentifier>{BD299BAD-29B5-0872-32C6-8B669ED06472}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fragment\ImGui">
+      <UniqueIdentifier>{E31B1953-CFE9-0C59-B87D-7D7FA4EAE8BD}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +40,9 @@
     <ClInclude Include="src\Fragment\Events\MouseEvent.h">
       <Filter>Fragment\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Fragment\ImGui\ImGuiLayer.h">
+      <Filter>Fragment\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Fragment\Layer.h">
       <Filter>Fragment</Filter>
     </ClInclude>
@@ -46,7 +55,10 @@
     <ClInclude Include="src\Fragment\Window.h">
       <Filter>Fragment</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\WindowsWindow.h">
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform</Filter>
     </ClInclude>
     <ClInclude Include="src\frgpch.h" />
@@ -54,6 +66,9 @@
   <ItemGroup>
     <ClCompile Include="src\Fragment\Application.cpp">
       <Filter>Fragment</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\ImGui\ImGuiLayer.cpp">
+      <Filter>Fragment\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Fragment\Layer.cpp">
       <Filter>Fragment</Filter>
@@ -64,7 +79,10 @@
     <ClCompile Include="src\Fragment\Log.cpp">
       <Filter>Fragment</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\WindowsWindow.cpp">
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform</Filter>
     </ClCompile>
     <ClCompile Include="src\frgpch.cpp" />

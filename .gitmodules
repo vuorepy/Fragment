@@ -4,3 +4,6 @@
 [submodule "Fragment/vendor/GLFW"]
 	path = Fragment/vendor/GLFW
 	url = https://github.com/Rypryp/glfw
+[submodule "Fragment/vendor/imgui"]
+	path = Fragment/vendor/imgui
+	url = https://github.com/Rypryp/imgui

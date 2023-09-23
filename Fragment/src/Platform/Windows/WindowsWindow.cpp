@@ -20,17 +20,17 @@ namespace Fragment
 		return new WindowsWindow(props);
 	}
 
-	Fragment::WindowsWindow::WindowsWindow(const WindowProperties& props)
+	WindowsWindow::WindowsWindow(const WindowProperties& props)
 	{
 		Init(props);
 	}
 
-	Fragment::WindowsWindow::~WindowsWindow()
+	WindowsWindow::~WindowsWindow()
 	{
 		Shutdown();
 	}
 
-	void Fragment::WindowsWindow::Init(const WindowProperties& props)
+	void WindowsWindow::Init(const WindowProperties& props)
 	{
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
@@ -99,6 +99,14 @@ namespace Fragment
 				}
 			});
 
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode)
+			{
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+				KeyTypedEvent event(keycode);
+				data.EventCallback(event);
+			});
+
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -137,13 +145,13 @@ namespace Fragment
 			});
 	}
 
-	void Fragment::WindowsWindow::OnUpdate()
+	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 	}
 
-	void Fragment::WindowsWindow::SetVSync(bool enabled)
+	void WindowsWindow::SetVSync(bool enabled)
 	{
 		if (enabled)
 			glfwSwapInterval(1);
@@ -153,12 +161,12 @@ namespace Fragment
 		m_Data.VSync = enabled;
 	}
 
-	bool Fragment::WindowsWindow::IsVSync() const
+	bool WindowsWindow::IsVSync() const
 	{
 		return m_Data.VSync;
 	}
 
-	void Fragment::WindowsWindow::Shutdown()
+	void WindowsWindow::Shutdown()
 	{
 		glfwDestroyWindow(m_Window);
 	}
