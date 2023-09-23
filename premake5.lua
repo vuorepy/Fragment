@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to the root folder
 IncludeDirs = {}
 IncludeDirs["GLFW"] = "Fragment/vendor/GLFW/include"
+IncludeDirs["Glad"] = "Fragment/vendor/Glad/include"
 
 include "Fragment/vendor/GLFW"
+include "Fragment/vendor/Glad"
 
 project "Fragment"
 	location "Fragment"
@@ -37,12 +39,14 @@ project "Fragment"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDirs.GLFW}"
+		"%{IncludeDirs.GLFW}",
+		"%{IncludeDirs.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -52,12 +56,27 @@ project "Fragment"
 		staticruntime "On"
 		systemversion "latest"
 
-		defines {"FRG_PLATFORM_WINDOWS","FRG_BUILD_DLL"}
+		defines {"FRG_PLATFORM_WINDOWS","FRG_BUILD_DLL", "GLFW_INCLUDE_NONE"}
 
 		postbuildcommands
 		{
 			("{copy} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
 		}
+
+	filter "configurations:Debug"
+		defines "FRG_DEBUG"
+		buildoptions "/MDd"
+		symbols "On"
+
+	filter "configurations:Debug"
+		defines "FRG_RELEASE"
+		buildoptions "/MD"
+		symbols "On"
+
+	filter "configurations:Debug"
+		defines "FRG_DIST"
+		buildoptions "/MD"
+		symbols "On"
 
 
 project "Sandbox"
@@ -94,3 +113,18 @@ project "Sandbox"
 		{
 			"FRG_PLATFORM_WINDOWS"
 		}
+
+	filter "configurations:Debug"
+		defines "FRG_DEBUG"
+		buildoptions "/MDd"
+		symbols "On"
+
+	filter "configurations:Debug"
+		defines "FRG_RELEASE"
+		buildoptions "/MD"
+		symbols "On"
+
+	filter "configurations:Debug"
+		defines "FRG_DIST"
+		buildoptions "/MD"
+		symbols "On"

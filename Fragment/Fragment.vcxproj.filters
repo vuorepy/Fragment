@@ -34,6 +34,12 @@
     <ClInclude Include="src\Fragment\Events\MouseEvent.h">
       <Filter>Fragment\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Fragment\Layer.h">
+      <Filter>Fragment</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\LayerStack.h">
+      <Filter>Fragment</Filter>
+    </ClInclude>
     <ClInclude Include="src\Fragment\Log.h">
       <Filter>Fragment</Filter>
     </ClInclude>
@@ -47,6 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Fragment\Application.cpp">
+      <Filter>Fragment</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\Layer.cpp">
+      <Filter>Fragment</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\LayerStack.cpp">
       <Filter>Fragment</Filter>
     </ClCompile>
     <ClCompile Include="src\Fragment\Log.cpp">
