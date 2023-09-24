@@ -15,6 +15,7 @@ IncludeDirs = {}
 IncludeDirs["GLFW"] = "Fragment/vendor/GLFW/include"
 IncludeDirs["Glad"] = "Fragment/vendor/Glad/include"
 IncludeDirs["ImGui"] = "Fragment/vendor/imgui"
+IncludeDirs["glm"] = "Fragment/vendor/glm"
 
 include "Fragment/vendor/GLFW"
 include "Fragment/vendor/Glad"
@@ -36,7 +37,9 @@ project "Fragment"
 	files 
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
 	includedirs
@@ -45,7 +48,8 @@ project "Fragment"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDirs.GLFW}",
 		"%{IncludeDirs.Glad}",
-		"%{IncludeDirs.ImGui}"
+		"%{IncludeDirs.ImGui}",
+		"%{IncludeDirs.glm}"
 	}
 
 	links
@@ -104,7 +108,9 @@ project "Sandbox"
 	includedirs
 	{
 		"Fragment/vendor/spdlog/include",
-		"Fragment/src"
+		"Fragment/src",
+		"Fragment/vendor",
+		"%{IncludeDirs.glm}"
 	}
 
 	links

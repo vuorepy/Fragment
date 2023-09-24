@@ -6,6 +6,8 @@
 #include "Fragment/Events/Event.h"
 #include "Events/ApplicationEvent.h"
 
+#include "Fragment/ImGui/ImGuiLayer.h"
+
 namespace Fragment 
 {
 	class FRAGMENT_API Application
@@ -27,6 +29,7 @@ namespace Fragment
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 		static Application* s_Instance;
