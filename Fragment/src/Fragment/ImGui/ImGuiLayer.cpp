@@ -3,6 +3,7 @@
 
 #include "Platform/OpenGL/ImGuiOpenGLRenderer.h"
 #include "Fragment/Application.h"
+#include "Fragment/KeyCodes.h"
 
 // TEMP
 #include <GLFW/glfw3.h>
@@ -29,28 +30,27 @@ namespace Fragment
 		io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
 		io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
 
-		// TEMPORARY: should eventually use Fragment key codes
-		io.KeyMap[ImGuiKey_Tab] = GLFW_KEY_TAB;
-		io.KeyMap[ImGuiKey_LeftArrow] = GLFW_KEY_LEFT;
-		io.KeyMap[ImGuiKey_RightArrow] = GLFW_KEY_RIGHT;
-		io.KeyMap[ImGuiKey_UpArrow] = GLFW_KEY_UP;
-		io.KeyMap[ImGuiKey_DownArrow] = GLFW_KEY_DOWN;
-		io.KeyMap[ImGuiKey_PageUp] = GLFW_KEY_PAGE_UP;
-		io.KeyMap[ImGuiKey_PageDown] = GLFW_KEY_PAGE_DOWN;
-		io.KeyMap[ImGuiKey_Home] = GLFW_KEY_HOME;
-		io.KeyMap[ImGuiKey_End] = GLFW_KEY_END;
-		io.KeyMap[ImGuiKey_Insert] = GLFW_KEY_INSERT;
-		io.KeyMap[ImGuiKey_Delete] = GLFW_KEY_DELETE;
-		io.KeyMap[ImGuiKey_Backspace] = GLFW_KEY_BACKSPACE;
-		io.KeyMap[ImGuiKey_Space] = GLFW_KEY_SPACE;
-		io.KeyMap[ImGuiKey_Enter] = GLFW_KEY_ENTER;
-		io.KeyMap[ImGuiKey_Escape] = GLFW_KEY_ESCAPE;
-		io.KeyMap[ImGuiKey_A] = GLFW_KEY_A;
-		io.KeyMap[ImGuiKey_C] = GLFW_KEY_C;
-		io.KeyMap[ImGuiKey_V] = GLFW_KEY_V;
-		io.KeyMap[ImGuiKey_X] = GLFW_KEY_X;
-		io.KeyMap[ImGuiKey_Y] = GLFW_KEY_Y;
-		io.KeyMap[ImGuiKey_Z] = GLFW_KEY_Z;
+		io.KeyMap[ImGuiKey_Tab] = FRG_KEY_TAB;
+		io.KeyMap[ImGuiKey_LeftArrow] = FRG_KEY_LEFT;
+		io.KeyMap[ImGuiKey_RightArrow] = FRG_KEY_RIGHT;
+		io.KeyMap[ImGuiKey_UpArrow] = FRG_KEY_UP;
+		io.KeyMap[ImGuiKey_DownArrow] = FRG_KEY_DOWN;
+		io.KeyMap[ImGuiKey_PageUp] = FRG_KEY_PAGE_UP;
+		io.KeyMap[ImGuiKey_PageDown] = FRG_KEY_PAGE_DOWN;
+		io.KeyMap[ImGuiKey_Home] = FRG_KEY_HOME;
+		io.KeyMap[ImGuiKey_End] = FRG_KEY_END;
+		io.KeyMap[ImGuiKey_Insert] = FRG_KEY_INSERT;
+		io.KeyMap[ImGuiKey_Delete] = FRG_KEY_DELETE;
+		io.KeyMap[ImGuiKey_Backspace] = FRG_KEY_BACKSPACE;
+		io.KeyMap[ImGuiKey_Space] = FRG_KEY_SPACE;
+		io.KeyMap[ImGuiKey_Enter] = FRG_KEY_ENTER;
+		io.KeyMap[ImGuiKey_Escape] = FRG_KEY_ESCAPE;
+		io.KeyMap[ImGuiKey_A] = FRG_KEY_A;
+		io.KeyMap[ImGuiKey_C] = FRG_KEY_C;
+		io.KeyMap[ImGuiKey_V] = FRG_KEY_V;
+		io.KeyMap[ImGuiKey_X] = FRG_KEY_X;
+		io.KeyMap[ImGuiKey_Y] = FRG_KEY_Y;
+		io.KeyMap[ImGuiKey_Z] = FRG_KEY_Z;
 
 		ImGui_ImplOpenGL3_Init("#version 410");
 	}
@@ -130,10 +130,10 @@ namespace Fragment
 		ImGuiIO& io = ImGui::GetIO();
 		io.KeysDown[e.GetKeyCode()] = true;
 
-		io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
-		io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
-		io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
-		io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
+		io.KeyCtrl = io.KeysDown[FRG_KEY_LEFT_CONTROL] || io.KeysDown[FRG_KEY_RIGHT_CONTROL];
+		io.KeyShift = io.KeysDown[FRG_KEY_LEFT_SHIFT] || io.KeysDown[FRG_KEY_RIGHT_SHIFT];
+		io.KeyAlt = io.KeysDown[FRG_KEY_LEFT_ALT] || io.KeysDown[FRG_KEY_RIGHT_ALT];
+		io.KeySuper = io.KeysDown[FRG_KEY_LEFT_SUPER] || io.KeysDown[FRG_KEY_RIGHT_SUPER];
 
 		return false;
 	}
