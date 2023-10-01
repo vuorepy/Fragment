@@ -1,5 +1,6 @@
 workspace "Fragment"
-	architecture "x64"
+	architecture "x64" 
+	startproject "Sandbox"
 
 	configurations 
 	{
@@ -23,7 +24,7 @@ include "Fragment/vendor/imgui"
 
 project "Fragment"
 	location "Fragment"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
 	staticruntime "on"
@@ -40,6 +41,11 @@ project "Fragment"
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
+	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs
@@ -60,34 +66,30 @@ project "Fragment"
 		"opengl32.lib"
 	}
 
-
 	filter "system:windows"
-		cppdialect "Default"
-		staticruntime "On"
 		systemversion "latest"
 
-		defines {"FRG_PLATFORM_WINDOWS","FRG_BUILD_DLL", "GLFW_INCLUDE_NONE"}
-
-		postbuildcommands
+		defines 
 		{
-			("{copy} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			"FRG_PLATFORM_WINDOWS",
+			"FRG_BUILD_DLL", 
+			"GLFW_INCLUDE_NONE"
 		}
 
 	filter "configurations:Debug"
 		defines "FRG_DEBUG"
-		buildoptions "/MDd"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 
-	filter "configurations:Debug"
+	filter "configurations:Release"
 		defines "FRG_RELEASE"
-		buildoptions "/MD"
-		symbols "On"
+		runtime "Release"
+		optimize "on"
 
-	filter "configurations:Debug"
+	filter "configurations:Dist"
 		defines "FRG_DIST"
-		buildoptions "/MD"
-		symbols "On"
-
+		runtime "Release"
+		optimize "on"
 
 project "Sandbox"
 	location "Sandbox"
@@ -119,8 +121,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "Default"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines 
@@ -130,15 +130,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "FRG_DEBUG"
-		buildoptions "/MDd"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 
-	filter "configurations:Debug"
+	filter "configurations:Release"
 		defines "FRG_RELEASE"
-		buildoptions "/MD"
-		symbols "On"
+		runtime "Release"
+		optimize "on"
 
-	filter "configurations:Debug"
+	filter "configurations:Dist"
 		defines "FRG_DIST"
-		buildoptions "/MD"
-		symbols "On"
+		runtime "Release"
+		optimize "on"

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Fragment/Window.h"
+#include "Fragment/Renderer/GraphicsContext.h"
+
 #include "GLFW/glfw3.h"
 
 namespace Fragment
@@ -28,6 +30,7 @@ namespace Fragment
 
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{

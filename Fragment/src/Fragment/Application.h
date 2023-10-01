@@ -34,6 +34,7 @@ namespace Fragment
 		LayerStack m_LayerStack;
 		static Application* s_Instance;
 
+		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
 	};
 
 	// To be defined in client
