@@ -20,5 +20,8 @@ namespace Fragment
 	void Layer::OnUpdate()
 	{
 	}
+	void Layer::OnUpdate(Timestep ts)
+	{
+	}
 }
 

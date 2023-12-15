@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Fragment/Core.h"
+#include "Fragment/Core/Timestep.h"
 #include "Fragment/Events/Event.h"
 
 namespace Fragment
@@ -14,6 +15,7 @@ namespace Fragment
 		virtual void OnAttach();
 		virtual void OnDetach();
 		virtual void OnUpdate();
+		virtual void OnUpdate(Timestep ts);
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event){}
 

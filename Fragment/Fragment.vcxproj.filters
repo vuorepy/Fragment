@@ -1349,6 +1349,21 @@
     </ClInclude>
     <ClInclude Include="src\Fragment\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Fragment\Renderer\Shader.h" />
+    <ClInclude Include="src\Fragment\Renderer\VertexBuffer.h" />
+    <ClInclude Include="src\Fragment\Renderer\IndexBuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexBuffer.h" />
+    <ClInclude Include="src\Fragment\Renderer\Renderer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLIndexBuffer.h" />
+    <ClInclude Include="src\Fragment\Renderer\BufferLayout.h" />
+    <ClInclude Include="src\Fragment\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="src\Fragment\Renderer\RendererAPI.h" />
+    <ClInclude Include="src\Fragment\Renderer\RenderCommand.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\Fragment\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Fragment\Core\Timestep.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Fragment\Application.cpp">
@@ -1379,5 +1394,19 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Fragment\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Fragment\Renderer\VertexBuffer.cpp" />
+    <ClCompile Include="src\Fragment\Renderer\IndexBuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexBuffer.cpp" />
+    <ClCompile Include="src\Fragment\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLIndexBuffer.cpp" />
+    <ClCompile Include="src\Fragment\Renderer\BufferLayout.cpp" />
+    <ClCompile Include="src\Fragment\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\Fragment\Renderer\RendererAPI.cpp" />
+    <ClCompile Include="src\Fragment\Renderer\RenderCommand.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\Fragment\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
   </ItemGroup>
 </Project>

@@ -6,11 +6,13 @@
 #include "Fragment/Events/Event.h"
 #include "Events/ApplicationEvent.h"
 
+#include "Fragment/Core/Timestep.h"
+
 #include "Fragment/ImGui/ImGuiLayer.h"
 
 namespace Fragment 
 {
-	class FRAGMENT_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -32,9 +34,10 @@ namespace Fragment
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-		static Application* s_Instance;
+		float m_LastFrameTime = 0.0f;
 
-		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+	private:
+		static Application* s_Instance;
 	};
 
 	// To be defined in client
