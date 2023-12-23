@@ -5,14 +5,15 @@
 #include <utility>
 #include <algorithm>
 #include <functional>
-#include <sstream>
 
+#include <sstream>
+#include <array>
 #include <string>
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Fragment/Log.h"
+#include "Fragment/Core/Log.h"
 
 #ifdef  FRG_PLATFORM_WINDOWS
 	#include <Windows.h>

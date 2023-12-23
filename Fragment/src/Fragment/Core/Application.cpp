@@ -1,7 +1,7 @@
 #include "frgpch.h"
 #include "Application.h"
 
-#include "Renderer/BufferLayout.h"
+#include "Fragment/Renderer/BufferLayout.h"
 #include "Fragment/Renderer/Renderer.h"
 #include "KeyCodes.h"
 
@@ -19,6 +19,8 @@ namespace Fragment
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(FRG_BIND_EVENT_FN(Application::OnEvent));
 
+		Renderer::Init();
+
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);		
 	}
@@ -27,15 +29,16 @@ namespace Fragment
 	{
 	}
 
-	void Application::OnEvent(Event& e)
+	void Application::OnEvent(Event& event)
 	{
-		EventDispatcher dispatcher(e);
+		EventDispatcher dispatcher(event);
 		dispatcher.Dispatch<WindowCloseEvent>(FRG_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(FRG_BIND_EVENT_FN(Application::OnWindowResize));
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
-			(*--it)->OnEvent(e);
-			if (e.Handled)
+			(*--it)->OnEvent(event);
+			if (event.Handled)
 			{
 				break;
 			}
@@ -52,10 +55,24 @@ namespace Fragment
 		m_LayerStack.PushOverlay(overlay);
 	}
 
-	bool Application::OnWindowClose(WindowCloseEvent& e)
+	bool Application::OnWindowClose(WindowCloseEvent& event)
 	{
 		m_Running = false;
 		return true;
+	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& event)
+	{
+		if (event.GetWidth() == 0 || event.GetHeight() == 0)
+		{
+			m_Minimized = true;
+			return false;
+		}
+
+		m_Minimized = false;
+		Renderer::OnWindowResize(event.GetWidth(), event.GetHeight());
+
+		return false;
 	}
 
 	void Application::Run() 
@@ -66,9 +83,12 @@ namespace Fragment
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
-			for (Layer* layer : m_LayerStack)
+			if (m_Minimized == false)
 			{
-				layer->OnUpdate(timestep);
+				for (Layer* layer : m_LayerStack)
+				{
+					layer->OnUpdate(timestep);
+				}
 			}
 
 			m_ImGuiLayer->Begin();

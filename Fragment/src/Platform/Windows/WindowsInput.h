@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Fragment/Core.h"
-#include "Fragment/Input.h"
+#include "Fragment/Core/Core.h"
+#include "Fragment/Core/Input.h"
 
 namespace Fragment
 {

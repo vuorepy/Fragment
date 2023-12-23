@@ -2,11 +2,12 @@
 
 #include "Core.h"
 #include "Window.h"
-#include "Fragment/LayerStack.h"
-#include "Fragment/Events/Event.h"
-#include "Events/ApplicationEvent.h"
 
+#include "Fragment/Core/LayerStack.h"
 #include "Fragment/Core/Timestep.h"
+
+#include "Fragment/Events/Event.h"
+#include "Fragment/Events/ApplicationEvent.h"
 
 #include "Fragment/ImGui/ImGuiLayer.h"
 
@@ -28,11 +29,14 @@ namespace Fragment
 		inline static Application& Get() { return *s_Instance; }
 
 	private:
-		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowClose(WindowCloseEvent& event);
+		bool OnWindowResize(WindowResizeEvent& event);
 
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
+		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;
 

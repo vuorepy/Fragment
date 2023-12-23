@@ -17,6 +17,7 @@ IncludeDirs["GLFW"] = "Fragment/vendor/GLFW/include"
 IncludeDirs["Glad"] = "Fragment/vendor/Glad/include"
 IncludeDirs["ImGui"] = "Fragment/vendor/imgui"
 IncludeDirs["glm"] = "Fragment/vendor/glm"
+IncludeDirs["stb_image"] = "Fragment/vendor/stb_image"
 
 include "Fragment/vendor/GLFW"
 include "Fragment/vendor/Glad"
@@ -39,6 +40,8 @@ project "Fragment"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
@@ -55,7 +58,8 @@ project "Fragment"
 		"%{IncludeDirs.GLFW}",
 		"%{IncludeDirs.Glad}",
 		"%{IncludeDirs.ImGui}",
-		"%{IncludeDirs.glm}"
+		"%{IncludeDirs.glm}",
+		"%{IncludeDirs.stb_image}"
 	}
 
 	links

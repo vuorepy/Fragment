@@ -8,6 +8,7 @@ namespace Fragment
 	{
 	public:
 		OrthographicCamera(float left, float right, float bottom, float top);
+		void SetProjection(float left, float right, float bottom, float top);
 
 		const glm::vec3& GetPosition() const { return m_Position; }
 		void SetPosition(const glm::vec3& position)
@@ -22,6 +23,7 @@ namespace Fragment
 			m_Rotation = rotation; 
 			RecalculateViewMatrix();
 		}
+
 
 		const glm::mat4& GetProjectionMatrix() const { return m_ProjectionMatrix; }
 		const glm::mat4& GetViewMatrix() const { return m_ViewMatrix; }

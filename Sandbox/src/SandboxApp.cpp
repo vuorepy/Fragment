@@ -5,11 +5,13 @@
 #include <imgui/imgui.h>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Fragment/Renderer/ShaderLibrary.h"
+
 class ExampleLayer : public Fragment::Layer
 {
 public:
 	ExampleLayer():
-		Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+		Layer("Example"), m_CameraController(1280.0f / 720.0f)
 	{ 
 		m_VertexArray.reset(Fragment::VertexArray::Create());
 
@@ -19,7 +21,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 
-		std::shared_ptr<Fragment::VertexBuffer> vertexBuffer;
+		Fragment::Ref<Fragment::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Fragment::VertexBuffer::Create(vertices, sizeof(vertices)));
 		Fragment::BufferLayout layout = {
 			{ Fragment::ShaderDataType::Float3, "a_Position" },
@@ -29,28 +31,29 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<Fragment::IndexBuffer> indexBuffer;
+		Fragment::Ref<Fragment::IndexBuffer> indexBuffer;
 		indexBuffer.reset(Fragment::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 		m_SquareVA.reset(Fragment::VertexArray::Create());
 
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		std::shared_ptr<Fragment::VertexBuffer> squareVB;
+		Fragment::Ref<Fragment::VertexBuffer> squareVB;
 		squareVB.reset(Fragment::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
-			{ Fragment::ShaderDataType::Float3, "a_Position" }
+			{ Fragment::ShaderDataType::Float3, "a_Position" },
+			{ Fragment::ShaderDataType::Float2, "a_TexCoord" }
 			});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<Fragment::IndexBuffer> squareIB;
+		Fragment::Ref<Fragment::IndexBuffer> squareIB;
 		squareIB.reset(Fragment::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -89,7 +92,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(Fragment::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = Fragment::Shader::Create("Triangle", vertexSrc, fragmentSrc);
 
 		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
@@ -123,35 +126,27 @@ public:
 			}
 		)";
 
-		m_FlatColorShader.reset(Fragment::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+		m_FlatColorShader = Fragment::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
+
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
+
+		m_Texture = Fragment::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_FragmentLogoTexture = Fragment::Texture2D::Create("assets/textures/Fragment.png");
+
+		std::dynamic_pointer_cast<Fragment::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Fragment::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Fragment::Timestep ts) override
 	{
-		if (Fragment::Input::IsKeyPressed(FRG_KEY_W))
-		{
-			m_CameraPosition.y += m_CameraMoveSpeed * m_CameraMoveSpeed * ts;
-		}
-		else if (Fragment::Input::IsKeyPressed(FRG_KEY_S))
-		{
-			m_CameraPosition.y -= m_CameraMoveSpeed * m_CameraMoveSpeed * ts;
-		}
+		// Update
+		m_CameraController.OnUpdate(ts);
 
-		if (Fragment::Input::IsKeyPressed(FRG_KEY_A))
-		{
-			m_CameraPosition.x -= m_CameraMoveSpeed * m_CameraMoveSpeed * ts;
-		}
-		else if (Fragment::Input::IsKeyPressed(FRG_KEY_D))
-		{
-			m_CameraPosition.x += m_CameraMoveSpeed * m_CameraMoveSpeed * ts;
-		}
-
+		// Render
 		Fragment::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Fragment::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-
-		Fragment::Renderer::BeginScene(m_Camera);
+		Fragment::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -171,7 +166,15 @@ public:
 			}
 		}
 
-		Fragment::Renderer::Submit(m_Shader, m_VertexArray);
+		auto textureShader = m_ShaderLibrary.Get("Texture");
+
+		m_Texture->Bind();
+		Fragment::Renderer::Submit(textureShader, m_SquareVA, scale = glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+		m_FragmentLogoTexture->Bind();
+		Fragment::Renderer::Submit(textureShader, m_SquareVA, scale = glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+		//Fragment::Renderer::Submit(m_Shader, m_VertexArray);
 
 		Fragment::Renderer::EndScene();
 	}
@@ -185,22 +188,22 @@ public:
 
 	void OnEvent(Fragment::Event& event) override
 	{
-		
+		m_CameraController.OnEvent(event);
 	}
 
 private:
-	std::shared_ptr<Fragment::Shader> m_Shader;
-	std::shared_ptr<Fragment::VertexArray> m_VertexArray;
+	Fragment::ShaderLibrary m_ShaderLibrary;
+	Fragment::Ref<Fragment::Shader> m_Shader;
+	Fragment::Ref<Fragment::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Fragment::Shader> m_FlatColorShader;
-	std::shared_ptr<Fragment::VertexArray> m_SquareVA;
+	Fragment::Ref<Fragment::Shader> m_FlatColorShader;
+	Fragment::Ref<Fragment::VertexArray> m_SquareVA;
 
-	Fragment::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 1.0f;
+	Fragment::Ref<Fragment::Texture2D> m_Texture, m_FragmentLogoTexture;
+
+	Fragment::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
-
 
 };
 

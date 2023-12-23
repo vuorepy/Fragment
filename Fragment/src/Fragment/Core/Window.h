@@ -2,7 +2,7 @@
 
 #include "frgpch.h"
 
-#include "Fragment/Core.h"
+#include "Core.h"
 #include "Fragment/Events/Event.h"
 
 namespace Fragment

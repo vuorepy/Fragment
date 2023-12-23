@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Fragment/Core.h"
-#include "Fragment/Core/Timestep.h"
+#include "Core.h"
+#include "Timestep.h"
+
 #include "Fragment/Events/Event.h"
 
 namespace Fragment

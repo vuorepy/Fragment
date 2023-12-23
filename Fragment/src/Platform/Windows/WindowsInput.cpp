@@ -1,7 +1,7 @@
 #include "frgpch.h"
 #include "WindowsInput.h"
 
-#include "Fragment/Application.h"
+#include "Fragment/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Fragment

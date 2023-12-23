@@ -7,14 +7,23 @@
     <Filter Include="src\Fragment">
       <UniqueIdentifier>{F0526677-DCB5-F51B-853B-2ED2717DC19E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Fragment\Core">
+      <UniqueIdentifier>{48CD7881-B4E3-7617-FD5A-023969B0479F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Fragment\Events">
       <UniqueIdentifier>{D45003C8-40B2-E0D5-C91F-278835801795}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Fragment\ImGui">
       <UniqueIdentifier>{1A3CFDB0-0620-BE06-6F80-B8595B83A888}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Fragment\Renderer">
+      <UniqueIdentifier>{96E415CD-0251-D1C7-CB44-69253770F32F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
@@ -40,19 +49,46 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Fragment.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Fragment\Application.h">
-      <Filter>src\Fragment</Filter>
+    <ClInclude Include="src\Fragment\Core\Application.h">
+      <Filter>src\Fragment\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Fragment\Core.h">
-      <Filter>src\Fragment</Filter>
+    <ClInclude Include="src\Fragment\Core\Core.h">
+      <Filter>src\Fragment\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Fragment\EntryPoint.h">
-      <Filter>src\Fragment</Filter>
+    <ClInclude Include="src\Fragment\Core\EntryPoint.h">
+      <Filter>src\Fragment\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Core\Input.h">
+      <Filter>src\Fragment\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Core\KeyCodes.h">
+      <Filter>src\Fragment\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Core\Layer.h">
+      <Filter>src\Fragment\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Core\LayerStack.h">
+      <Filter>src\Fragment\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Core\Log.h">
+      <Filter>src\Fragment\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Core\MouseButtonCodes.h">
+      <Filter>src\Fragment\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Core\Timestep.h">
+      <Filter>src\Fragment\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Core\Window.h">
+      <Filter>src\Fragment\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Fragment\Events\ApplicationEvent.h">
       <Filter>src\Fragment\Events</Filter>
@@ -69,26 +105,65 @@
     <ClInclude Include="src\Fragment\ImGui\ImGuiLayer.h">
       <Filter>src\Fragment\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Fragment\Input.h">
-      <Filter>src\Fragment</Filter>
+    <ClInclude Include="src\Fragment\Renderer\BufferLayout.h">
+      <Filter>src\Fragment\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Fragment\KeyCodes.h">
-      <Filter>src\Fragment</Filter>
+    <ClInclude Include="src\Fragment\Renderer\GraphicsContext.h">
+      <Filter>src\Fragment\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Fragment\Layer.h">
-      <Filter>src\Fragment</Filter>
+    <ClInclude Include="src\Fragment\Renderer\IndexBuffer.h">
+      <Filter>src\Fragment\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Fragment\LayerStack.h">
-      <Filter>src\Fragment</Filter>
+    <ClInclude Include="src\Fragment\Renderer\OrthographicCamera.h">
+      <Filter>src\Fragment\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Fragment\Log.h">
-      <Filter>src\Fragment</Filter>
+    <ClInclude Include="src\Fragment\Renderer\OrthographicCameraController.h">
+      <Filter>src\Fragment\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Fragment\MouseButtonCodes.h">
-      <Filter>src\Fragment</Filter>
+    <ClInclude Include="src\Fragment\Renderer\RenderCommand.h">
+      <Filter>src\Fragment\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Fragment\Window.h">
-      <Filter>src\Fragment</Filter>
+    <ClInclude Include="src\Fragment\Renderer\Renderer.h">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Renderer\RendererAPI.h">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Renderer\Shader.h">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Renderer\ShaderLibrary.h">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Renderer\Texture.h">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Renderer\VertexArray.h">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Renderer\VertexBuffer.h">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLIndexBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
@@ -1347,27 +1422,22 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Fragment\Renderer\GraphicsContext.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="src\Fragment\Renderer\Shader.h" />
-    <ClInclude Include="src\Fragment\Renderer\VertexBuffer.h" />
-    <ClInclude Include="src\Fragment\Renderer\IndexBuffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexBuffer.h" />
-    <ClInclude Include="src\Fragment\Renderer\Renderer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLIndexBuffer.h" />
-    <ClInclude Include="src\Fragment\Renderer\BufferLayout.h" />
-    <ClInclude Include="src\Fragment\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Fragment\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\Fragment\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
-    <ClInclude Include="src\Fragment\Renderer\OrthographicCamera.h" />
-    <ClInclude Include="src\Fragment\Core\Timestep.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Fragment\Application.cpp">
-      <Filter>src\Fragment</Filter>
+    <ClCompile Include="src\Fragment\Core\Application.cpp">
+      <Filter>src\Fragment\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\Core\Layer.cpp">
+      <Filter>src\Fragment\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\Core\LayerStack.cpp">
+      <Filter>src\Fragment\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\Core\Log.cpp">
+      <Filter>src\Fragment\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Fragment\ImGui\ImGuiBuild.cpp">
       <Filter>src\Fragment\ImGui</Filter>
@@ -1375,14 +1445,62 @@
     <ClCompile Include="src\Fragment\ImGui\ImGuiLayer.cpp">
       <Filter>src\Fragment\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Fragment\Layer.cpp">
-      <Filter>src\Fragment</Filter>
+    <ClCompile Include="src\Fragment\Renderer\BufferLayout.cpp">
+      <Filter>src\Fragment\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Fragment\LayerStack.cpp">
-      <Filter>src\Fragment</Filter>
+    <ClCompile Include="src\Fragment\Renderer\IndexBuffer.cpp">
+      <Filter>src\Fragment\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Fragment\Log.cpp">
-      <Filter>src\Fragment</Filter>
+    <ClCompile Include="src\Fragment\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\Renderer\OrthographicCameraController.cpp">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\Renderer\RenderCommand.cpp">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\Renderer\Renderer.cpp">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\Renderer\RendererAPI.cpp">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\Renderer\Shader.cpp">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\Renderer\ShaderLibrary.cpp">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\Renderer\Texture.cpp">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\Renderer\VertexArray.cpp">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\Renderer\VertexBuffer.cpp">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLIndexBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
@@ -1393,20 +1511,8 @@
     <ClCompile Include="src\frgpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
-    <ClCompile Include="src\Fragment\Renderer\Shader.cpp" />
-    <ClCompile Include="src\Fragment\Renderer\VertexBuffer.cpp" />
-    <ClCompile Include="src\Fragment\Renderer\IndexBuffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexBuffer.cpp" />
-    <ClCompile Include="src\Fragment\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLIndexBuffer.cpp" />
-    <ClCompile Include="src\Fragment\Renderer\BufferLayout.cpp" />
-    <ClCompile Include="src\Fragment\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\Fragment\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\Fragment\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
-    <ClCompile Include="src\Fragment\Renderer\OrthographicCamera.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

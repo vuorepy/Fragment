@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Fragment/Core.h"
+#include "Core.h"
 
 namespace Fragment
 {
