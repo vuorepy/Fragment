@@ -14,6 +14,8 @@ namespace Fragment
 
 	void OpenGLContext::Init()
 	{
+		FRG_PROFILE_FUNCTION();
+
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		FRG_CORE_ASSERT(status, "Failed to initialize Glad!");
@@ -26,6 +28,8 @@ namespace Fragment
 
 	void OpenGLContext::SwapBuffers()
 	{
+		FRG_PROFILE_FUNCTION();
+
 		glfwSwapBuffers(m_WindowHandle);
 	}
 }

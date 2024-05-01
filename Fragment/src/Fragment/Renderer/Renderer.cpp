@@ -1,7 +1,8 @@
 #include "frgpch.h"
 #include "Renderer.h"
 
-#include "Platform/OpenGL/OpenGLShader.h""
+#include "Platform/OpenGL/OpenGLShader.h"
+#include "Renderer2D.h"
 
 namespace Fragment
 {
@@ -9,7 +10,17 @@ namespace Fragment
 
 	void Renderer::Init()
 	{
+		FRG_PROFILE_FUNCTION();
+
 		RenderCommand::Init();
+		Renderer2D::Init();
+	}
+
+	void Renderer::Shutdown()
+	{
+		FRG_PROFILE_FUNCTION();
+
+		Renderer2D::Shutdown();
 	}
 
 	void Renderer::OnWindowResize(uint32_t width, uint32_t height)
@@ -19,16 +30,21 @@ namespace Fragment
 
 	void Renderer::BeginScene(OrthographicCamera& camera)
 	{
+		FRG_PROFILE_FUNCTION();
+
 		m_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
 	}
 
 	void Renderer::EndScene()
 	{
+		FRG_PROFILE_FUNCTION();
 
 	}
 
 	void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4& transform)
 	{
+		FRG_PROFILE_FUNCTION();
+
 		shader->Bind();
 		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
 		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_Transform", transform);

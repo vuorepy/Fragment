@@ -16,6 +16,7 @@
 
 // ---Renderer------------------------
 #include "Fragment/Renderer/Renderer.h"
+#include "Fragment/Renderer/Renderer2D.h"
 #include "Fragment/Renderer/RenderCommand.h"
 
 #include "Fragment/Renderer/BufferLayout.h"
@@ -29,5 +30,3 @@
 #include "Fragment/Renderer/OrthographicCameraController.h"
 // -----------------------------------
 
-// -- Entry Point
-#include "Fragment/Core/EntryPoint.h"

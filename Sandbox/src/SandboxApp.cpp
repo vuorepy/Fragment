@@ -1,4 +1,6 @@
 #include <Fragment.h>
+#include <Fragment/Core/EntryPoint.h>
+
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "Platform/OpenGL/OpenGLShader.h"
@@ -7,13 +9,15 @@
 
 #include "Fragment/Renderer/ShaderLibrary.h"
 
+#include "Sandbox2D.h"
+
 class ExampleLayer : public Fragment::Layer
 {
 public:
 	ExampleLayer():
 		Layer("Example"), m_CameraController(1280.0f / 720.0f)
 	{ 
-		m_VertexArray.reset(Fragment::VertexArray::Create());
+		m_VertexArray = Fragment::VertexArray::Create();
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -22,7 +26,7 @@ public:
 		};
 
 		Fragment::Ref<Fragment::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(Fragment::VertexBuffer::Create(vertices, sizeof(vertices)));
+		vertexBuffer = Fragment::VertexBuffer::Create(vertices, sizeof(vertices));
 		Fragment::BufferLayout layout = {
 			{ Fragment::ShaderDataType::Float3, "a_Position" },
 			{ Fragment::ShaderDataType::Float4, "a_Color" }
@@ -35,7 +39,7 @@ public:
 		indexBuffer.reset(Fragment::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
-		m_SquareVA.reset(Fragment::VertexArray::Create());
+		m_SquareVA = Fragment::VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -45,7 +49,7 @@ public:
 		};
 
 		Fragment::Ref<Fragment::VertexBuffer> squareVB;
-		squareVB.reset(Fragment::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB = Fragment::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		squareVB->SetLayout({
 			{ Fragment::ShaderDataType::Float3, "a_Position" },
 			{ Fragment::ShaderDataType::Float2, "a_TexCoord" }
@@ -212,7 +216,8 @@ class Sandbox : public Fragment::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox()

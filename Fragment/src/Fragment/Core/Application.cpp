@@ -13,6 +13,8 @@ namespace Fragment
 
 	Application::Application()
 	{
+		FRG_PROFILE_FUNCTION();
+
 		FRG_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
@@ -27,10 +29,15 @@ namespace Fragment
 
 	Application::~Application()
 	{
+		FRG_PROFILE_FUNCTION();
+
+		Renderer::Shutdown();
 	}
 
 	void Application::OnEvent(Event& event)
 	{
+		FRG_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(event);
 		dispatcher.Dispatch<WindowCloseEvent>(FRG_BIND_EVENT_FN(Application::OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(FRG_BIND_EVENT_FN(Application::OnWindowResize));
@@ -47,22 +54,32 @@ namespace Fragment
 
 	void Application::PushLayer(Layer* layer)
 	{
+		FRG_PROFILE_FUNCTION();
+
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay)
 	{
+		FRG_PROFILE_FUNCTION();
+
 		m_LayerStack.PushOverlay(overlay);
+		overlay->OnAttach();
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& event)
 	{
+		FRG_PROFILE_FUNCTION();
+
 		m_Running = false;
 		return true;
 	}
 
 	bool Application::OnWindowResize(WindowResizeEvent& event)
 	{
+		FRG_PROFILE_FUNCTION();
+
 		if (event.GetWidth() == 0 || event.GetHeight() == 0)
 		{
 			m_Minimized = true;
@@ -77,26 +94,41 @@ namespace Fragment
 
 	void Application::Run() 
 	{
+		FRG_PROFILE_FUNCTION();
+
 		while (m_Running)
 		{	
+			FRG_PROFILE_SCOPE("RunLoop");
+
 			float time = (float)glfwGetTime();
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
 			if (m_Minimized == false)
 			{
-				for (Layer* layer : m_LayerStack)
 				{
-					layer->OnUpdate(timestep);
+					FRG_PROFILE_SCOPE("LayerStack OnUpdate");
+
+					for (Layer* layer : m_LayerStack)
+					{
+						layer->OnUpdate(timestep);
+					}
 				}
+
+				m_ImGuiLayer->Begin();
+
+				{
+					FRG_PROFILE_SCOPE("LayerStack OnImGuiRender");
+
+					for (Layer* layer : m_LayerStack)
+					{
+						layer->OnImGuiRender();
+					}
+				}
+
+				m_ImGuiLayer->End();
 			}
 
-			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
-			{
-				layer->OnImGuiRender();
-			}
-			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
 		}

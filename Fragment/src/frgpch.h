@@ -14,6 +14,7 @@
 #include <unordered_set>
 
 #include "Fragment/Core/Log.h"
+#include "Fragment/Debug/Instrumentor.h"
 
 #ifdef  FRG_PLATFORM_WINDOWS
 	#include <Windows.h>

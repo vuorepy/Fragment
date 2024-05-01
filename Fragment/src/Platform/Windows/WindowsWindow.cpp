@@ -23,16 +23,22 @@ namespace Fragment
 
 	WindowsWindow::WindowsWindow(const WindowProperties& props)
 	{
+		FRG_PROFILE_FUNCTION();
+
 		Init(props);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
+		FRG_PROFILE_FUNCTION();
+
 		Shutdown();
 	}
 
 	void WindowsWindow::Init(const WindowProperties& props)
 	{
+		FRG_PROFILE_FUNCTION();
+
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
@@ -149,12 +155,16 @@ namespace Fragment
 
 	void WindowsWindow::OnUpdate()
 	{
+		FRG_PROFILE_FUNCTION();
+
 		glfwPollEvents();
 		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{
+		FRG_PROFILE_FUNCTION();
+
 		if (enabled)
 			glfwSwapInterval(1);
 		else
@@ -170,6 +180,8 @@ namespace Fragment
 
 	void WindowsWindow::Shutdown()
 	{
+		FRG_PROFILE_FUNCTION();
+
 		glfwDestroyWindow(m_Window);
 	}
 }

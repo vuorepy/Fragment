@@ -1425,6 +1425,8 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\Fragment\Renderer\Renderer2D.h" />
+    <ClInclude Include="src\Fragment\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Fragment\Core\Application.cpp">
@@ -1514,5 +1516,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="src\Fragment\Renderer\Renderer2D.cpp" />
   </ItemGroup>
 </Project>

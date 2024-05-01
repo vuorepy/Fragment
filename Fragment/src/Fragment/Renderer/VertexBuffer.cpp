@@ -7,7 +7,7 @@
 
 namespace Fragment
 {
-	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
+	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -15,7 +15,7 @@ namespace Fragment
 			FRG_CORE_ASSERT(false, "RendererAPI::None is not supported");
 			return nullptr;
 		case RendererAPI::API::OpenGl:
-			return new OpenGLVertexBuffer(vertices, size);
+			return std::make_shared<OpenGLVertexBuffer>(vertices, size);
 		}
 
 		FRG_CORE_ASSERT(false, "Unknown RendererAPI");

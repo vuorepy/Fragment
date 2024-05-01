@@ -14,6 +14,8 @@ namespace Fragment
 
 	void OrthographicCameraController::OnUpdate(Timestep ts)
 	{
+		FRG_PROFILE_FUNCTION();
+
 		m_CameraMoveSpeed = m_ZoomLevel;
 
 		if (Input::IsKeyPressed(FRG_KEY_A))
@@ -39,6 +41,8 @@ namespace Fragment
 
 	void OrthographicCameraController::OnEvent(Event& event)
 	{
+		FRG_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(event);
 
 		dispatcher.Dispatch<MouseScrolledEvent>(FRG_BIND_EVENT_FN(OrthographicCameraController::OnMouseScrolled));
@@ -47,6 +51,8 @@ namespace Fragment
 
 	bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent& event)
 	{
+		FRG_PROFILE_FUNCTION();
+
 		m_ZoomLevel -=  event.GetYOffset() * 0.25f;
 		m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
@@ -56,6 +62,8 @@ namespace Fragment
 
 	bool OrthographicCameraController::OnWindowResized(WindowResizeEvent& event)
 	{
+		FRG_PROFILE_FUNCTION();
+
 		m_AspectRatio = (float)event.GetWidth() / (float)event.GetHeight();
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
 

@@ -6,7 +6,7 @@
 
 namespace Fragment
 {
-	VertexArray* Fragment::VertexArray::Create()
+	Ref<VertexArray> Fragment::VertexArray::Create()
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -14,7 +14,7 @@ namespace Fragment
 			FRG_CORE_ASSERT(false, "RendererAPI::None is not supported");
 			return nullptr;
 		case RendererAPI::API::OpenGl:
-			return new OpenGLVertexArray();
+			return std::make_shared<OpenGLVertexArray>();
 		}
 
 		FRG_CORE_ASSERT(false, "Unknown RendererAPI");
