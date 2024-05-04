@@ -32,9 +32,17 @@ void Sandbox2D::OnUpdate(Fragment::Timestep ts)
 
 	Fragment::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-	Fragment::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, m_SquareColor);
+	Fragment::Renderer2D::DrawQuad(m_SquarePosition, { 0.8f, 0.8f }, m_SquareColor);
 	Fragment::Renderer2D::DrawQuad({ 1.0f, 1.0f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
-	Fragment::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f}, { 10.0f, 10.0f }, m_CheckerboardTexture);
+	Fragment::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f}, { 10.0f, 10.0f }, m_CheckerboardTexture, 10.0f, m_BackgroundColor);
+
+	if (m_SquarePosition.y > 1.0f || m_SquarePosition.y < -1.0f)
+	{
+		m_MovementDirection *= -1.0f;
+	}
+
+	m_SquarePosition.y += m_MovementDirection * ts;
+
 
 	Fragment::Renderer2D::EndScene();
 
@@ -46,6 +54,7 @@ void Sandbox2D::OnImGuiRender()
 
 	ImGui::Begin("Settings");
 	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+	ImGui::ColorEdit4("Background Color", glm::value_ptr(m_BackgroundColor));
 	ImGui::End();
 }
 

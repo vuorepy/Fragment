@@ -7,12 +7,12 @@
 
 namespace Fragment
 {
-	IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size)
+	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t count)
 	{
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:    FRG_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGl:  return new OpenGLIndexBuffer(indices, size);
+		case RendererAPI::API::OpenGl:  return std::make_shared<OpenGLIndexBuffer>(indices, count);
 		}
 
 		FRG_CORE_ASSERT(false, "Unknown RendererAPI!");

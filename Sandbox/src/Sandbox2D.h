@@ -24,4 +24,8 @@ private:
 	Fragment::Ref<Fragment::Texture2D> m_CheckerboardTexture;
 
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+	glm::vec4 m_BackgroundColor = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+	glm::vec3 m_SquarePosition = { 0.0f, 0.0f, 0.0f };
+	float m_MovementDirection = 1.0f;
 };

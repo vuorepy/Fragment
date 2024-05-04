@@ -10,6 +10,9 @@
     <Filter Include="src\Fragment\Core">
       <UniqueIdentifier>{48CD7881-B4E3-7617-FD5A-023969B0479F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Fragment\Debug">
+      <UniqueIdentifier>{66D19EB0-52B5-5F06-BB15-5A59A7184A88}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Fragment\Events">
       <UniqueIdentifier>{D45003C8-40B2-E0D5-C91F-278835801795}</UniqueIdentifier>
     </Filter>
@@ -90,6 +93,9 @@
     <ClInclude Include="src\Fragment\Core\Window.h">
       <Filter>src\Fragment\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Fragment\Debug\Instrumentor.h">
+      <Filter>src\Fragment\Debug</Filter>
+    </ClInclude>
     <ClInclude Include="src\Fragment\Events\ApplicationEvent.h">
       <Filter>src\Fragment\Events</Filter>
     </ClInclude>
@@ -124,6 +130,9 @@
       <Filter>src\Fragment\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Fragment\Renderer\Renderer.h">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fragment\Renderer\Renderer2D.h">
       <Filter>src\Fragment\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Fragment\Renderer\RendererAPI.h">
@@ -1425,8 +1434,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Fragment\Renderer\Renderer2D.h" />
-    <ClInclude Include="src\Fragment\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Fragment\Core\Application.cpp">
@@ -1463,6 +1470,9 @@
       <Filter>src\Fragment\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Fragment\Renderer\Renderer.cpp">
+      <Filter>src\Fragment\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fragment\Renderer\Renderer2D.cpp">
       <Filter>src\Fragment\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Fragment\Renderer\RendererAPI.cpp">
@@ -1516,6 +1526,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Fragment\Renderer\Renderer2D.cpp" />
   </ItemGroup>
 </Project>
